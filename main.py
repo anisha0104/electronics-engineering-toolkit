@@ -3,7 +3,15 @@ from calculators.ohms_law import (
     calculate_current,
     calculate_resistance
 )
-from calculators.input_handler import get_number, get_nonzero_number
+
+from calculators.units import (
+    convert_current,
+    convert_voltage,
+    convert_resistance
+)
+
+from calculators.input_handler import get_value_with_unit
+
 
 print("Electronics Engineering Toolkit")
 print("==============================")
@@ -18,28 +26,53 @@ print("3. Resistance")
 choice = input("Enter your choice (1-3): ")
 
 if choice == "1":
-    current = get_number("Enter current (A): ")
-    resistance = get_number("Enter resistance (ohms): ")
+    try:
+        current, current_unit = get_value_with_unit("Enter current: ")
+        resistance, resistance_unit = get_value_with_unit("Enter resistance: ")
 
-    voltage = calculate_voltage(current, resistance)
+        current = convert_current(current, current_unit)
+        resistance = convert_resistance(resistance, resistance_unit)
 
-    print(f"Voltage: {voltage} V")
+        voltage = calculate_voltage(current, resistance)
+
+        print(f"Voltage: {voltage} V")
+
+    except ValueError as error:
+        print(f"Invalid input: {error}")
 
 elif choice == "2":
-    voltage = get_number("Enter voltage (V): ")
-    resistance = get_nonzero_number("Enter resistance (ohms): ")
+    try:
+        voltage, voltage_unit = get_value_with_unit("Enter voltage: ")
+        resistance, resistance_unit = get_value_with_unit("Enter resistance: ")
 
-    current = calculate_current(voltage, resistance)
+        voltage = convert_voltage(voltage, voltage_unit)
+        resistance = convert_resistance(resistance, resistance_unit)
 
-    print(f"Current: {current} A")
+        current = calculate_current(voltage, resistance)
+
+        print(f"Current: {current} A")
+
+    except ValueError as error:
+        print(f"Invalid input: {error}")
+
 
 elif choice == "3":
-    voltage = get_number("Enter voltage (V): ")
-    current = get_nonzero_number("Enter current (A): ")
+    try:
+        voltage, voltage_unit = get_value_with_unit("Enter voltage: ")
+        current, current_unit = get_value_with_unit("Enter current: ")
 
-    resistance = calculate_resistance(voltage, current)
+        voltage = convert_voltage(voltage, voltage_unit)
+        current = convert_current(current, current_unit)
 
-    print(f"Resistance: {resistance} ohms")
+        if current == 0:
+            print("Invalid input: Current cannot be zero.")
+        else:
+            resistance = calculate_resistance(voltage, current)
+
+            print(f"Resistance: {resistance} ohms")
+
+    except ValueError as error:
+        print(f"Invalid input: {error}")
 
 else:
     print("Invalid choice.")
