@@ -11,6 +11,7 @@ from calculators.units import (
 )
 
 from calculators.input_handler import get_value_with_unit
+from calculators.formatting import print_result
 
 
 print("Electronics Engineering Toolkit")
@@ -35,7 +36,7 @@ if choice == "1":
 
         voltage = calculate_voltage(current, resistance)
 
-        print(f"Voltage: {voltage} V")
+        print_result("Voltage", voltage, "V")
 
     except ValueError as error:
         print(f"Invalid input: {error}")
@@ -50,7 +51,7 @@ elif choice == "2":
 
         current = calculate_current(voltage, resistance)
 
-        print(f"Current: {current} A")
+        print_result("Current", current, "A")
 
     except ValueError as error:
         print(f"Invalid input: {error}")
@@ -69,7 +70,7 @@ elif choice == "3":
         else:
             resistance = calculate_resistance(voltage, current)
 
-            print(f"Resistance: {resistance} ohms")
+            print_result("Resistance", resistance, "ohms")
 
     except ValueError as error:
         print(f"Invalid input: {error}")
