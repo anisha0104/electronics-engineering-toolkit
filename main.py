@@ -17,6 +17,7 @@ from calculators.resistance import (
     calculate_series_resistance,
     calculate_parallel_resistance
 )
+from calculators.voltage_divider import calculate_voltage_divider
 
 print("Electronics Engineering Toolkit")
 print("==============================")
@@ -30,8 +31,9 @@ print("3. Resistance")
 print("4. Power")
 print("5. Series Resistance")
 print("6. Parallel Resistance")
+print("7. Voltage Divider")
 
-choice = input("Enter your choice (1-6): ")
+choice = input("Enter your choice (1-7): ")
 
 if choice == "1":
     try:
@@ -157,6 +159,39 @@ elif choice == "6":
                 total_resistance,
                 "ohms"
             )
+
+    except ValueError as error:
+        print(f"Invalid input: {error}")
+
+elif choice == "7":
+    try:
+        voltage_value, voltage_unit = get_value_with_unit(
+            "Enter input voltage: "
+        )
+
+        resistance_1_value, resistance_1_unit = get_value_with_unit(
+            "Enter R1: "
+        )
+
+        resistance_2_value, resistance_2_unit = get_value_with_unit(
+            "Enter R2: "
+        )
+
+        voltage_in = convert_voltage(voltage_value, voltage_unit)
+        resistance_1 = convert_resistance(
+            resistance_1_value, resistance_1_unit
+        )
+        resistance_2 = convert_resistance(
+            resistance_2_value, resistance_2_unit
+        )
+
+        output_voltage = calculate_voltage_divider(
+            voltage_in,
+            resistance_1,
+            resistance_2
+        )
+
+        print_result("Output V", output_voltage, "V")
 
     except ValueError as error:
         print(f"Invalid input: {error}")
