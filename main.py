@@ -13,7 +13,10 @@ from calculators.units import (
 from calculators.input_handler import get_value_with_unit
 from calculators.formatting import print_result
 from calculators.power import calculate_power
-from calculators.resistance import calculate_series_resistance
+from calculators.resistance import (
+    calculate_series_resistance,
+    calculate_parallel_resistance
+)
 
 print("Electronics Engineering Toolkit")
 print("==============================")
@@ -26,8 +29,9 @@ print("2. Current")
 print("3. Resistance")
 print("4. Power")
 print("5. Series Resistance")
+print("6. Parallel Resistance")
 
-choice = input("Enter your choice (1-5): ")
+choice = input("Enter your choice (1-6): ")
 
 if choice == "1":
     try:
@@ -118,6 +122,38 @@ elif choice == "5":
 
             print_result(
                 "Series R",
+                total_resistance,
+                "ohms"
+            )
+
+    except ValueError as error:
+        print(f"Invalid input: {error}")
+
+elif choice == "6":
+    try:
+        number_of_resistors = int(input("How many resistors? "))
+
+        if number_of_resistors <= 0:
+            print("Invalid input: Number of resistors must be greater than zero.")
+        else:
+            resistances = []
+
+            for i in range(number_of_resistors):
+                resistance, resistance_unit = get_value_with_unit(
+                    f"Enter resistance {i + 1}: "
+                )
+
+                resistance = convert_resistance(
+                    resistance,
+                    resistance_unit
+                )
+
+                resistances.append(resistance)
+
+            total_resistance = calculate_parallel_resistance(resistances)
+
+            print_result(
+                "Parallel R",
                 total_resistance,
                 "ohms"
             )
