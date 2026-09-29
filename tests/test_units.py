@@ -1,7 +1,8 @@
 from calculators.units import (
     convert_current,
     convert_voltage,
-    convert_resistance
+    convert_resistance,
+    convert_capacitance
 )
 
 
@@ -60,3 +61,22 @@ def test_invalid_voltage_unit():
 def test_invalid_resistance_unit():
     with pytest.raises(ValueError):
         convert_resistance(100, "banana")
+
+def test_convert_capacitance():
+    assert convert_capacitance(1, "F") == 1
+    assert convert_capacitance(1, "mF") == 0.001
+    assert convert_capacitance(1, "uF") == 0.000001
+    assert convert_capacitance(1, "nF") == 0.000000001
+    assert convert_capacitance(1, "pF") == 0.000000000001
+
+
+def test_convert_capacitance_microfarad_symbol():
+    assert convert_capacitance(1, "µF") == 0.000001
+
+
+def test_invalid_capacitance_unit():
+    try:
+        convert_capacitance(10, "xyz")
+        assert False
+    except ValueError:
+        assert True

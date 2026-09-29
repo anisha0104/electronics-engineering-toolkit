@@ -79,3 +79,20 @@ def convert_resistance(value, unit):
 
     else:
         raise ValueError("Unsupported resistance unit")
+
+def convert_capacitance(value, unit):
+    unit = unit.strip()
+
+    capacitance_aliases = {
+        "F": 1,
+        "mF": 1e-3,
+        "uF": 1e-6,
+        "µF": 1e-6,
+        "nF": 1e-9,
+        "pF": 1e-12
+    }
+
+    if unit not in capacitance_aliases:
+        raise ValueError("Unsupported capacitance unit")
+
+    return value * capacitance_aliases[unit]
