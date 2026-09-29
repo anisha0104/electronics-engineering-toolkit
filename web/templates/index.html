@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Electronics Engineering Toolkit
+    </title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVIGATION
+     ===================================================== -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        ⚡ EET
+    </div>
+
+    <div class="nav-links">
+
+        <a href="#calculators">
+            Calculators
+        </a>
+
+        <a href="#features">
+            Features
+        </a>
+
+        <a href="#about">
+            About
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =====================================================
+     HERO
+     ===================================================== -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <span class="badge">
+            ELECTRONICS ENGINEERING TOOLKIT
+        </span>
+
+        <h1>
+            Engineering calculations,
+            <span>simplified.</span>
+        </h1>
+
+        <p>
+            A professional collection of practical electronics
+            calculators built with Python, Flask and modern web
+            technologies.
+        </p>
+
+        <a href="#calculators"
+           class="hero-button">
+
+            Explore Calculators →
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CALCULATORS
+     ===================================================== -->
+
+<section id="calculators"
+         class="section">
+
+    <div class="section-heading">
+
+        <span class="section-label">
+            ENGINEERING TOOLS
+        </span>
+
+        <h2>
+            Electronics Calculators
+        </h2>
+
+        <p>
+            Select a calculator and perform your calculation instantly.
+        </p>
+
+    </div>
+
+
+    <div class="calculator-grid">
+
+
+        <!-- OHM'S LAW -->
+
+        <div class="tool-card active-card">
+
+            <div class="tool-icon">
+                Ω
+            </div>
+
+            <h3>
+                Ohm's Law
+            </h3>
+
+            <p>
+                Calculate voltage, current or resistance.
+            </p>
+
+            <button onclick="openCalculator('ohms')">
+                Open Calculator →
+            </button>
+
+        </div>
+
+
+
+        <!-- POWER -->
+
+        <div class="tool-card">
+
+            <div class="tool-icon">
+                P
+            </div>
+
+            <h3>
+                Power
+            </h3>
+
+            <p>
+                Calculate electrical power from voltage and current.
+            </p>
+
+            <button onclick="openCalculator('power')">
+                Open Calculator →
+            </button>
+
+        </div>
+
+
+
+        <!-- SERIES -->
+
+        <div class="tool-card">
+
+            <div class="tool-icon">
+                Σ
+            </div>
+
+            <h3>
+                Series Resistance
+            </h3>
+
+            <p>
+                Calculate total resistance in a series circuit.
+            </p>
+
+            <button onclick="openCalculator('series')">
+                Open Calculator →
+            </button>
+
+        </div>
+
+
+
+        <!-- PARALLEL -->
+
+        <div class="tool-card">
+
+            <div class="tool-icon">
+                ∥
+            </div>
+
+            <h3>
+                Parallel Resistance
+            </h3>
+
+            <p>
+                Calculate equivalent resistance in parallel circuits.
+            </p>
+
+            <button onclick="openCalculator('parallel')">
+                Open Calculator →
+            </button>
+
+        </div>
+
+
+
+        <!-- VOLTAGE DIVIDER -->
+
+        <div class="tool-card">
+
+            <div class="tool-icon">
+                V
+            </div>
+
+            <h3>
+                Voltage Divider
+            </h3>
+
+            <p>
+                Calculate output voltage using two resistors.
+            </p>
+
+            <button onclick="openCalculator('divider')">
+                Open Calculator →
+            </button>
+
+        </div>
+
+
+
+        <!-- LED -->
+
+        <div class="tool-card">
+
+            <div class="tool-icon">
+                LED
+            </div>
+
+            <h3>
+                LED Resistor
+            </h3>
+
+            <p>
+                Calculate the required current-limiting resistor.
+            </p>
+
+            <button onclick="openCalculator('led')">
+                Open Calculator →
+            </button>
+
+        </div>
+
+
+
+        <!-- RC FILTER -->
+
+        <div class="tool-card">
+
+            <div class="tool-icon">
+                RC
+            </div>
+
+            <h3>
+                RC Filter
+            </h3>
+
+            <p>
+                Calculate the cutoff frequency of an RC filter.
+            </p>
+
+            <button onclick="openCalculator('rc')">
+                Open Calculator →
+            </button>
+
+        </div>
+
+
+
+        <!-- OP AMP -->
+
+        <div class="tool-card">
+
+            <div class="tool-icon">
+                A
+            </div>
+
+            <h3>
+                Op-Amp Gain
+            </h3>
+
+            <p>
+                Calculate the gain of an inverting amplifier.
+            </p>
+
+            <button onclick="openCalculator('opamp')">
+                Open Calculator →
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FEATURES
+     ===================================================== -->
+
+<section id="features"
+         class="section features-section">
+
+    <div class="section-heading">
+
+        <span class="section-label">
+            WHY THIS TOOLKIT
+        </span>
+
+        <h2>
+            Built for practical engineering
+        </h2>
+
+    </div>
+
+
+    <div class="features-grid">
+
+        <div class="feature">
+
+            <h3>
+                ⚡ Fast
+            </h3>
+
+            <p>
+                Perform common engineering calculations
+                instantly without manual formulas.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <h3>
+                ✓ Reliable
+            </h3>
+
+            <p>
+                Calculations are powered by reusable
+                Python functions and automated tests.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <h3>
+                ⌘ Practical
+            </h3>
+
+            <p>
+                Designed around calculations used in
+                electronics engineering.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ABOUT
+     ===================================================== -->
+
+<section id="about"
+         class="about-section">
+
+    <div>
+
+        <span class="section-label">
+            ABOUT THE PROJECT
+        </span>
+
+        <h2>
+            Electronics Engineering Toolkit
+        </h2>
+
+        <p>
+            A Python and Flask based engineering application
+            combining reusable calculation modules, automated
+            testing and a modern web interface.
+        </p>
+
+    </div>
+
+
+    <div class="tech-list">
+
+        <span>Python</span>
+        <span>Flask</span>
+        <span>pytest</span>
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>JavaScript</span>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CALCULATOR MODAL
+     ===================================================== -->
+
+<div id="calculator-panel"
+     class="calculator-panel">
+
+    <div class="calculator-box">
+
+        <button class="close-calculator"
+                onclick="closeCalculator()">
+
+            ×
+
+        </button>
+
+
+        <div class="calculator-header">
+
+            <span class="section-label"
+                  id="modal-label">
+
+                ENGINEERING CALCULATOR
+
+            </span>
+
+            <h2 id="modal-title">
+                Calculator
+            </h2>
+
+            <p id="modal-description">
+                Enter the required values below.
+            </p>
+
+        </div>
+
+
+        <div id="calculator-inputs"
+             class="calculator-inputs">
+
+        </div>
+
+
+        <button class="calculate-button"
+                onclick="performCalculation()">
+
+            Calculate Result →
+
+        </button>
+
+
+        <div id="calculator-result"
+             class="calculator-result">
+
+            Enter your values to begin.
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
+<footer>
+
+    <p>
+        Electronics Engineering Toolkit
+    </p>
+
+    <span>
+        Built with Python & Flask
+    </span>
+
+</footer>
+
+
+
+<script src="{{ url_for('static', filename='script.js') }}">
+</script>
+
+</body>
+
+</html>
