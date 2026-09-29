@@ -19,6 +19,8 @@ from calculators.resistance import (
 )
 from calculators.voltage_divider import calculate_voltage_divider
 from calculators.led import calculate_led_resistor
+from calculators.rc_filter import calculate_cutoff_frequency
+from calculators.opamp import calculate_inverting_gain
 
 print("Electronics Engineering Toolkit")
 print("==============================")
@@ -34,8 +36,11 @@ print("5. Series Resistance")
 print("6. Parallel Resistance")
 print("7. Voltage Divider")
 print("8. LED Resistor")
+print("9. RC Filter")
+print("10. Op-Amp Gain")
 
-choice = input("Enter your choice (1-8): ")
+
+choice = input("Enter your choice (1-10): ")
 
 if choice == "1":
     try:
@@ -223,6 +228,79 @@ elif choice == "8":
         )
 
         print_result("LED R", resistance, "ohms")
+
+    except ValueError as error:
+        print(f"Invalid input: {error}")
+
+elif choice == "9":
+    try:
+        resistance_value, resistance_unit = get_value_with_unit(
+            "Enter resistance: "
+        )
+
+        capacitance_value, capacitance_unit = get_value_with_unit(
+            "Enter capacitance: "
+        )
+
+        resistance = convert_resistance(
+            resistance_value,
+            resistance_unit
+        )
+
+        capacitance_unit = capacitance_unit.strip()
+
+        capacitance_aliases = {
+            "F": 1,
+            "mF": 1e-3,
+            "uF": 1e-6,
+            "µF": 1e-6,
+            "nF": 1e-9,
+            "pF": 1e-12
+        }
+
+        if capacitance_unit not in capacitance_aliases:
+            raise ValueError("Unsupported capacitance unit")
+
+        capacitance = (
+            capacitance_value * capacitance_aliases[capacitance_unit]
+        )
+
+        cutoff_frequency = calculate_cutoff_frequency(
+            resistance,
+            capacitance
+        )
+
+        print_result("Cutoff F", cutoff_frequency, "Hz")
+
+    except ValueError as error:
+        print(f"Invalid input: {error}")
+
+elif choice == "10":
+    try:
+        feedback_value, feedback_unit = get_value_with_unit(
+            "Enter feedback resistance (Rf): "
+        )
+
+        input_value, input_unit = get_value_with_unit(
+            "Enter input resistance (Rin): "
+        )
+
+        feedback_resistance = convert_resistance(
+            feedback_value,
+            feedback_unit
+        )
+
+        input_resistance = convert_resistance(
+            input_value,
+            input_unit
+        )
+
+        gain = calculate_inverting_gain(
+            feedback_resistance,
+            input_resistance
+        )
+
+        print_result("Op-Amp Gain", gain, "")
 
     except ValueError as error:
         print(f"Invalid input: {error}")
