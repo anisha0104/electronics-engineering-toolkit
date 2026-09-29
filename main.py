@@ -18,6 +18,7 @@ from calculators.resistance import (
     calculate_parallel_resistance
 )
 from calculators.voltage_divider import calculate_voltage_divider
+from calculators.led import calculate_led_resistor
 
 print("Electronics Engineering Toolkit")
 print("==============================")
@@ -32,8 +33,9 @@ print("4. Power")
 print("5. Series Resistance")
 print("6. Parallel Resistance")
 print("7. Voltage Divider")
+print("8. LED Resistor")
 
-choice = input("Enter your choice (1-7): ")
+choice = input("Enter your choice (1-8): ")
 
 if choice == "1":
     try:
@@ -192,6 +194,35 @@ elif choice == "7":
         )
 
         print_result("Output V", output_voltage, "V")
+
+    except ValueError as error:
+        print(f"Invalid input: {error}")
+
+elif choice == "8":
+    try:
+        supply_value, supply_unit = get_value_with_unit(
+            "Enter supply voltage: "
+        )
+
+        forward_value, forward_unit = get_value_with_unit(
+            "Enter LED forward voltage: "
+        )
+
+        current_value, current_unit = get_value_with_unit(
+            "Enter LED current: "
+        )
+
+        supply_voltage = convert_voltage(supply_value, supply_unit)
+        forward_voltage = convert_voltage(forward_value, forward_unit)
+        led_current = convert_current(current_value, current_unit)
+
+        resistance = calculate_led_resistor(
+            supply_voltage,
+            forward_voltage,
+            led_current
+        )
+
+        print_result("LED R", resistance, "ohms")
 
     except ValueError as error:
         print(f"Invalid input: {error}")
